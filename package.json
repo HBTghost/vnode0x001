@@ -3,7 +3,20 @@
   "version": "1.0.0",
   "description": "Project 1 - full stack with Vue.js + Node.js",
   "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "server": "nodemon server"
+  },
   "repository": "https://github.com/HBTghost/vnode0x001.git",
   "author": "Brian Drake (HBTghost)",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^5.2.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
 }
