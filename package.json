@@ -5,12 +5,16 @@
   "main": "server.js",
   "scripts": {
     "start": "node server",
-    "server": "nodemon server"
+    "server": "nodemon --exec babel-node server"
   },
   "repository": "https://github.com/HBTghost/vnode0x001.git",
   "author": "Brian Drake (HBTghost)",
   "license": "MIT",
   "dependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/node": "^7.8.7",
+    "@babel/preset-env": "^7.9.6",
+    "axios": "^0.19.2",
     "concurrently": "^5.2.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
