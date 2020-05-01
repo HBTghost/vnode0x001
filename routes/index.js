@@ -1,17 +1,16 @@
 const express = require("express");
 const router = express.Router();
 // const axios = require("axios");
-import { mb } from "./history/mb";
 
 router.get("/:place/:date", (req, res) => {
   try {
     const { place, date } = req.params;
-    // console.log(date);
-    // var data;
-    // if (place === "mb") {
-    //   data = new mb(date);
-    // }
-    res.json(date);
+    var data;
+    if (place === "mb") {
+      const mb = require("./history/mb");
+      data = mb.show(date);
+    }
+    res.json(data);
   } catch(err) {
     console.error(err);
     res.status(500).json({

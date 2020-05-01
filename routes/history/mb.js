@@ -1,3 +1,5 @@
-export function show(date) {
-  return date;
+module.exports = {
+  show: function(date) {
+    return date;
+  }
 }
