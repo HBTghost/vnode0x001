@@ -1,0 +1,9 @@
+{
+  "name": "vnode0x001",
+  "version": "1.0.0",
+  "description": "Project 1 - full stack with Vue.js + Node.js",
+  "main": "server.js",
+  "repository": "https://github.com/HBTghost/vnode0x001.git",
+  "author": "Brian Drake (HBTghost)",
+  "license": "MIT"
+}
