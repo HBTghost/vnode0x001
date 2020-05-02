@@ -1,0 +1,29 @@
+{
+  "south": [
+    ["TP HCM", "Đồng Tháp", "Cà Mau"],
+    ["Bến Tre", "Vũng Tàu", "Bạc Liêu"],
+    ["Đồng Nai", "Cần Thơ", "Sóc Trăng"],
+    ["Tây Ninh", "An Giang", "Bình Thuận"],
+    ["Vĩnh Long", "Bình Dương", "Trà Vinh"],
+    ["TP HCM", "Long An", "Bình Phước", "Hậu Giang"],
+    ["Tiền Giang", "Kiên Giang", "Đà Lạt"]
+  ],
+  "middle": [
+    ["Thừa Thiên Huế", "Phú Yên"],
+    ["Đắk Lắk", "Quảng Nam"],
+    ["Đà Nẵng", "Khánh Hòa"],
+    ["Bình Định", "Quảng Trị", "Quảng Bình"],
+    ["Gia Lai", "Ninh Thuận"],
+    ["Đà Nẵng", "Quảng Ngãi", "Đắk Nông"],
+    ["Khánh Hòa", "Kon Tum"]
+  ],
+  "north": [
+    "XSKT Hà Nội",
+    "XSKT Quảng Ninh",
+    "XSKT Bắc Ninh",
+    "XSKT Hà Nội",
+    "XSKT Hải Phòng",
+    "XSKT Nam Định",
+    "XSKT Thái Bình"
+  ]
+}

@@ -1,15 +1,18 @@
-const axios = require("axios");
 module.exports = {
   get: async function(place, date) {
     var channelsIndex = 5;
-    var channels = getWeekChannel(place)[channelsIndex];
+    const channels = getWeekChannels(place)[channelsIndex];
+    const placeCode = getPlace(place);
     var baseUrl = process.env.HISTORY_RES_URL;
-    const url = baseUrl.replace(/#place/g, place==="south"?"mn":"mt").replace(/#date/g, date);
+    const url = baseUrl
+    .replace(/#place/g, placeCode)
+    .replace(/#date/g, date);
     var data = [];
     for (var i = 0; i < channels.length; ++i) {
       var tmp = [[], [], [], [], [], [], [], [], []];
       data.push(tmp.concat());
     }
+    const axios = require("axios");
     await axios(url)
       .then(response => {
         const cheerio = require("cheerio");
@@ -23,18 +26,19 @@ module.exports = {
             });
           });
         });
-        console.log(data);
         return data;
       })
       .catch(console.error);
-    // console.log(data);
     return data;
   },
 }
 
 // function get
 
-function getWeekChannel(place) {
+function getPlace(place) {
+  return place === "south" ? "mn" : "mt";
+}
+function getWeekChannels(place) {
   var data;
   if (place === "south") {
     data = [

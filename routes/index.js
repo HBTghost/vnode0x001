@@ -15,6 +15,8 @@ router.get("/:place/:date", async (req, res) => {
       data = await other.get(place, date);
     }
     res.json(data);
+    // const channels = require("./channels.json");
+    // res.send(channels["south"][3]);
   } catch(err) {
     console.error(err);
     res.status(500).json({
