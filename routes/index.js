@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-// const axios = require("axios");
 
-router.get("/:place/:date", (req, res) => {
+
+router.get("/:place/:date", async (req, res) => {
   try {
     const { place, date } = req.params;
     var data;
@@ -12,9 +12,8 @@ router.get("/:place/:date", (req, res) => {
       data = north.get(date);
     } else {
       const other = require("./history/other.js");
-      data = other.get(date);
+      data = await other.get(place, date);
     }
-    data += ` - ${place}`;
     res.json(data);
   } catch(err) {
     console.error(err);
