@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 
-
 router.get("/:place/:date", async (req, res) => {
   try {
     const { place, date } = req.params;
@@ -12,7 +11,7 @@ router.get("/:place/:date", async (req, res) => {
       data = north.get(date);
     } else {
       const other = require("./history/other.js");
-      data = await other.get(place, date);
+      data = await other.getResult(place, date);
     }
     res.json(data);
     // const channels = require("./channels.json");
