@@ -1,5 +1,5 @@
 module.exports = {
-  show: function(date) {
+  get: function(date) {
     return date;
   }
 }

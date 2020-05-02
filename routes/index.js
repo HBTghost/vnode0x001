@@ -6,10 +6,15 @@ router.get("/:place/:date", (req, res) => {
   try {
     const { place, date } = req.params;
     var data;
-    if (place === "mb") {
-      const mb = require("./history/mb");
-      data = mb.show(date);
+
+    if (place === "north") {
+      const north = require("./history/north.js");
+      data = north.get(date);
+    } else {
+      const other = require("./history/other.js");
+      data = other.get(date);
     }
+    data += ` - ${place}`;
     res.json(data);
   } catch(err) {
     console.error(err);
@@ -17,7 +22,6 @@ router.get("/:place/:date", (req, res) => {
       message: "Server Error"
     });
   }
-  // res.send("hello");
 });
 
 module.exports = router;
