@@ -4,10 +4,10 @@ export async function getResult(place, date) {
   const handleDate = require("../tools/handleDate.js");
   const channels = handleDate.getChannels(place, date);
 
-  var result = [];
+  var data = [];
   for (var i = 0; i < channels.length; ++i) {
     var tmp = [[], [], [], [], [], [], [], [], []];
-    result.push(tmp.concat());
+    data.push(tmp.concat());
   }
 
   const url = getUrl(place, date);
@@ -20,14 +20,31 @@ export async function getResult(place, date) {
         $1("td").next((atChannel, val1) => {
           const $2 = cheerio.load(val1);
           $2("span").each((pos, res) => {
-            result[atChannel][atRes].push($(res).text());
+            data[atChannel][atRes].push($(res).text().trim());
           });
         });
       });
     })
     .catch(console.error);
 
-  const data = { channels, result };
+  const allRewards = require("../data/allRewards.json");
+  const rewards = allRewards[place];
+  for (let atRes = 0; atRes < rewards.length; atRes++) {
+    for (let atChannel = 0; atChannel < channels.length; ++atChannel) {
+      var tmp = {};
+      tmp["reward"] = rewards[atRes];
+      tmp["result"] = data[atChannel][atRes];
+      data[atChannel][atRes] = tmp;
+    }
+  }
+
+  for (let atChannel = 0; atChannel < channels.length; ++atChannel) {
+    var tmp = {};
+    tmp["channel"] = channels[atChannel];
+    tmp["data"] = data[atChannel];
+    data[atChannel] = tmp;
+  }
+
   return data;
 }
 

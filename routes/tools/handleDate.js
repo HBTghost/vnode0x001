@@ -9,6 +9,6 @@ function getDoWindexFromDate(val) {
 export function getChannels(place, dateString) {
   const date = getDateFromString(dateString);
   const DoWindex = getDoWindexFromDate(date);
-  const regionChannels = require("../data/regionChannels.json");
+  const regionChannels = require("../data/allChannels.json");
   return regionChannels[place][DoWindex];
 }

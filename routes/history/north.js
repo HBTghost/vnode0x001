@@ -3,24 +3,33 @@ import axios from "axios";
 export async function getResult(place, date) {
   const handleDate = require("../tools/handleDate.js");
   const channel = handleDate.getChannels(place, date);
-  var result = [[], [], [], [], [], [], [], [], []];
+  var data = [[], [], [], [], [], [], [], [], []];
 
   const url = getUrl(place, date);
   await axios(url)
-  .then(response => {
-    const cheerio = require("cheerio");
-    const $ = cheerio.load(response.data);
-    $(".table-xsmb tr").each((atRes, val) => {
-      const $1 = cheerio.load(val);
-      $1("td > span").each((pos1, res) => {
-        result[atRes].push($(res).text());
+    .then(response => {
+      const cheerio = require("cheerio");
+      const $ = cheerio.load(response.data);
+      $(".table-xsmb tr").each((atRes, val) => {
+        const $1 = cheerio.load(val);
+        $1("td > span").each((pos1, res) => {
+          data[atRes].push($(res).text().trim());
+        });
       });
-    });
-  })
-  .catch(console.error);
+    })
+    .catch(console.error);
 
-  const data = { channel, result };
-  return data;
+  const allRewards = require("../data/allRewards.json");
+  const rewards = allRewards[place];
+  for (let atRes = 0; atRes < rewards.length; atRes++) {
+    var tmp = {};
+    tmp["reward"] = rewards[atRes];
+    tmp["result"] = data[atRes];
+    data[atRes] = tmp;
+  }
+
+  const result = { channel, data };
+  return result;
 }
 
 function getUrl(place, date) {
