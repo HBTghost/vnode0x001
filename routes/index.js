@@ -4,15 +4,14 @@ const router = express.Router();
 router.get("/:place/:date", async (req, res) => {
   try {
     const { place, date } = req.params;
-    var data;
+    var history;
 
     if (place === "north") {
-      const north = require("./history/north.js");
-      data = north.get(date);
+      history = require("./history/north.js");
     } else {
-      const other = require("./history/other.js");
-      data = await other.getResult(place, date);
+      history = require("./history/other.js");
     }
+    const data = await history.getResult(place, date);
     res.json(data);
   } catch(err) {
     console.error(err);
