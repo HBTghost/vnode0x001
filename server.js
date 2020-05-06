@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === "dev") {
 }
 
 // Lazy load routes
-app.use("/api/genDateStrings/", require("./routes/genDateStrings.js"))
+app.use("/api/genDateStrings", require("./routes/genDateStrings.js"))
 app.use("/api/result", require("./routes/result.js"));
 
 // Choose port

@@ -1,29 +1,29 @@
 {
-  "south": [
-    ["TP HCM", "Đồng Tháp", "Cà Mau"],
-    ["Bến Tre", "Vũng Tàu", "Bạc Liêu"],
-    ["Đồng Nai", "Cần Thơ", "Sóc Trăng"],
-    ["Tây Ninh", "An Giang", "Bình Thuận"],
-    ["Vĩnh Long", "Bình Dương", "Trà Vinh"],
-    ["TP HCM", "Long An", "Bình Phước", "Hậu Giang"],
-    ["Tiền Giang", "Kiên Giang", "Đà Lạt"]
-  ],
-  "middle": [
-    ["Thừa Thiên Huế", "Phú Yên"],
-    ["Đắk Lắk", "Quảng Nam"],
-    ["Đà Nẵng", "Khánh Hòa"],
-    ["Bình Định", "Quảng Trị", "Quảng Bình"],
-    ["Gia Lai", "Ninh Thuận"],
-    ["Đà Nẵng", "Quảng Ngãi", "Đắk Nông"],
-    ["Khánh Hòa", "Kon Tum"]
-  ],
-  "north": [
-    "XSKT Hà Nội",
-    "XSKT Quảng Ninh",
-    "XSKT Bắc Ninh",
-    "XSKT Hà Nội",
-    "XSKT Hải Phòng",
-    "XSKT Nam Định",
-    "XSKT Thái Bình"
-  ]
+  "south": {
+    "0": ["Tiền Giang", "Kiên Giang", "Đà Lạt"],
+    "1": ["TP HCM", "Đồng Tháp", "Cà Mau"],
+    "2": ["Bến Tre", "Vũng Tàu", "Bạc Liêu"],
+    "3": ["Đồng Nai", "Cần Thơ", "Sóc Trăng"],
+    "4": ["Tây Ninh", "An Giang", "Bình Thuận"],
+    "5": ["Vĩnh Long", "Bình Dương", "Trà Vinh"],
+    "6": ["TP HCM", "Long An", "Bình Phước", "Hậu Giang"]
+  },
+  "middle": {
+    "0": ["Khánh Hòa", "Kon Tum"],
+    "1": ["Phú Yên", "Thừa Thiên Huế"],
+    "2": ["Đắk Lắk", "Quảng Nam"],
+    "3": ["Đà Nẵng", "Khánh Hòa"],
+    "4": ["Quảng Bình", "Bình Định", "Quảng Trị"],
+    "5": ["Gia Lai", "Ninh Thuận"],
+    "6": ["Đà Nẵng", "Quảng Ngãi", "Đắk Nông"]
+  },
+  "north": {
+    "0": "XSKT Thái Bình",
+    "1": "XSKT Hà Nội",
+    "2": "XSKT Quảng Ninh",
+    "3": "XSKT Bắc Ninh",
+    "4": "XSKT Hà Nội",
+    "5": "XSKT Hải Phòng",
+    "6": "XSKT Nam Định"
+  }
 }

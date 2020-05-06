@@ -1,13 +1,14 @@
 const express = require("express");
 const router = express.Router();
 
-router.get("/:src/:des", async (req, res) => {
+router.get("/:place/:dateString/:day/:amount", async (req, res) => {
   try {
-    const { src, des } = req.params;
-    if (src === "0" || des === "0") {
-      
-    }
-    res.json("");
+    const { place, dateString, day, amount } = req.params;
+    const handleDate = require("./tools/handleDate.js");
+    const dateStrings =
+      handleDate.genDateStrings(place, dateString, day, amount);
+
+    res.json(dateStrings);
   } catch(err) {
     console.error(err);
     res.status(500).json({
