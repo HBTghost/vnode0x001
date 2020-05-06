@@ -12,3 +12,6 @@ export function getChannels(place, dateString) {
   const regionChannels = require("../data/allChannels.json");
   return regionChannels[place][DoWindex];
 }
+export function genDateStrings(src, des) {
+  console.log("hell");
+}
