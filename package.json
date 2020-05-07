@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server",
-    "server": "nodemon --exec babel-node server"
+    "server": "nodemon --exec babel-node server",
+    "client": "cd client && yarn serve",
+    "dev": "concurrently \"yarn server\" \"yarn client\""
   },
   "repository": "https://github.com/HBTghost/vnode0x001.git",
   "author": "Brian Drake (HBTghost)",
