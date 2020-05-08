@@ -4,28 +4,33 @@ export function getChannels(place, dateString) {
   return regionChannels[place][date.getDay()];
 }
 export function genDateStrings(place, dateString, day, amount) {
-  var delta;
-  if (dateString === "0") {
+  var delta, base;
+  if (dateString === "null") {
     delta = 0;
+    base = new Date();
   } else {
-    const tmp = getDateFromString(dateString);
-    delta = parseInt(day) - tmp.getDay(); 
+    base = getDateFromString(dateString);
+    if (day === "null") {
+      delta = base.getDay() - (new Date()).getDay();
+    } else {
+      delta = parseInt(day) - base.getDay(); 
+    }
   }
-  
-  const today = new Date();
   const aDay = 24 * 60 * 60 * 1000;
-  var date = new Date(today.getTime() + delta * aDay);
-  if (isNotGotResult(place, date)) {
+  var date = new Date(base.getTime() + delta * aDay);
+  
+  if (delta > 0 || (delta === 0 && isNotGotResult(place, date))) {
     date = new Date(date - 7 * aDay);
   }
-
+  
+  const indexDoW = date.getDay();
   var dateStrings = [];
   for (let i = 0; i < parseInt(amount); ++i) {
     dateStrings.push(getStringFromDate(date));
     date = new Date(date - 7 * aDay);
   } 
 
-  return dateStrings;
+  return { indexDoW, dateStrings };
 }
 function getDateFromString(dateString) {
   var arr = dateString.split("-");
@@ -84,6 +89,7 @@ function isNotGotResult(place, date) {
   const minArr = resultingTime["min"];
   const hour = date.getHours();
   const min = date.getMinutes();
+  
   if (isSmallerThanRange(hour, hourArr)) {
     return true;
   } else if (isInRange(hour, hourArr) && isSmallerThanRange(min, minArr)) {
