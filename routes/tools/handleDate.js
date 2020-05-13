@@ -54,34 +54,10 @@ function isInRange(elem, array) {
   const [ begin, end ] = array;
   return elem > begin && elem < end;
 }
-// function isBiggerThanRange(elem, array) {
-//   const [ begin, end ] = array;
-//   return elem > end;
-// }
 function isSmallerThanRange(elem, array) {
   const [ begin, end ] = array;
   return elem < begin;
 }
-// function isGettingResult(place, date) {
-//   const allResultingTime = require("../data/allResultingTime.json");
-//   const { hourArr, minArr } = allResultingTime[place];
-//   const hour = date.getHours();
-//   const min = date.getMinutes();
-//   return isInRange(hour, hourArr) && isInRange(min, minArr);
-// }
-// function isGotFullResult(date) {
-//   const allResultingTime = require("../data/allResultingTime.json");
-//   const { hourArr, minArr } = allResultingTime[place];
-//   const hour = date.getHours();
-//   const min = date.getMinutes();
-//   if (isBiggerThanRange(hour, hourArr)) {
-//     return true;
-//   } else if (isInRange(hour, hourArr) && isBiggerThanRange(min, minArr)) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
 function isNotGotResult(place, date) {
   const allResultingTime = require("../data/allResultingTime.json");
   const resultingTime = allResultingTime[place];
