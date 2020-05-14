@@ -1,6 +1,9 @@
 const express = require("express");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
+// const cors = require("cors");
+
+// app.use(cors());
 
 // Load env
 dotenv.config({ path: "./process.env" });

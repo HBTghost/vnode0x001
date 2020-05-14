@@ -16,7 +16,7 @@ router.get("/:place/:date", async (req, res) => {
   } catch(err) {
     console.error(err);
     res.status(500).json({
-      message: "Server Error"
+      message: err
     });
   }
 });
