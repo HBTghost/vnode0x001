@@ -45,8 +45,8 @@ export async function getResult(place, date) {
   //   data[atChannel] = tmp;
   // }
 
-  const data = require("../data/res_south_07_05_2020.json");
-  return data;
+  // const data = require("../data/res_south_07_05_2020.json");
+  return { place, date };
 }
 
 function getUrl(place, date) {
