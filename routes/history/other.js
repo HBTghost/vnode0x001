@@ -13,6 +13,7 @@ export async function getResult(place, date) {
   const url = getUrl(place, date);
   await axios(url)
     .then(response => {
+      console.log(url);
       const cheerio = require("cheerio");
       const $ = cheerio.load(response.data);
       $(".table-striped tbody > tr").each((atRes, val) => {
@@ -52,6 +53,6 @@ function getUrl(place, date) {
   const placeCodes = require("../data/placeCodes.json");
   const placeCode = placeCodes[place];
   const baseUrl = process.env.HISTORY_RES_URL;
-  
-  return baseUrl.replace(/#place/g, placeCode).replace(/#date/g, date);
+  const cors = "https://cors-anywhere.herokuapp.com/";
+  return cors + baseUrl.replace(/#place/g, placeCode).replace(/#date/g, date);
 }
