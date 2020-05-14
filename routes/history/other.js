@@ -1,52 +1,51 @@
 
-export function getResult(place, date) {
-  // const axios = require("axios");
-  // const handleDate = require("../tools/handleDate.js");
-  // const channels = handleDate.getChannels(place, date);
+export async function getResult(place, date) {
+  const axios = require("axios");
+  const handleDate = require("../tools/handleDate.js");
+  const channels = handleDate.getChannels(place, date);
 
-  // var data = [];
-  // for (var i = 0; i < channels.length; ++i) {
-  //   var tmp = [[], [], [], [], [], [], [], [], []];
-  //   data.push(tmp.concat());
-  // }
+  var data = [];
+  for (var i = 0; i < channels.length; ++i) {
+    var tmp = [[], [], [], [], [], [], [], [], []];
+    data.push(tmp.concat());
+  }
 
-  // const url = getUrl(place, date);
-  // await axios(url)
-  //   .then(response => {
-  //     const cheerio = require("cheerio");
-  //     const $ = cheerio.load(response.data);
-  //     $(".table-striped tbody > tr").each((atRes, val) => {
-  //       const $1 = cheerio.load(val);
-  //       $1("td").next((atChannel, val1) => {
-  //         const $2 = cheerio.load(val1);
-  //         $2("span").each((pos, res) => {
-  //           data[atChannel][atRes].push($(res).text().trim());
-  //         });
-  //       });
-  //     });
-  //   })
-  //   .catch(console.error);
+  const url = getUrl(place, date);
+  await axios(url)
+    .then(response => {
+      const cheerio = require("cheerio");
+      const $ = cheerio.load(response.data);
+      $(".table-striped tbody > tr").each((atRes, val) => {
+        const $1 = cheerio.load(val);
+        $1("td").next((atChannel, val1) => {
+          const $2 = cheerio.load(val1);
+          $2("span").each((pos, res) => {
+            data[atChannel][atRes].push($(res).text().trim());
+          });
+        });
+      });
+    })
+    .catch(console.error);
 
-  // const allRewards = require("../data/allRewards.json");
-  // const rewards = allRewards[place];
-  // for (let atRes = 0; atRes < rewards.length; atRes++) {
-  //   for (let atChannel = 0; atChannel < channels.length; ++atChannel) {
-  //     var tmp = {};
-  //     tmp["reward"] = rewards[atRes];
-  //     tmp["result"] = data[atChannel][atRes];
-  //     data[atChannel][atRes] = tmp;
-  //   }
-  // }
+  const allRewards = require("../data/allRewards.json");
+  const rewards = allRewards[place];
+  for (let atRes = 0; atRes < rewards.length; atRes++) {
+    for (let atChannel = 0; atChannel < channels.length; ++atChannel) {
+      var tmp = {};
+      tmp["reward"] = rewards[atRes];
+      tmp["result"] = data[atChannel][atRes];
+      data[atChannel][atRes] = tmp;
+    }
+  }
 
-  // for (let atChannel = 0; atChannel < channels.length; ++atChannel) {
-  //   var tmp = {};
-  //   tmp["channel"] = channels[atChannel];
-  //   tmp["data"] = data[atChannel];
-  //   data[atChannel] = tmp;
-  // }
+  for (let atChannel = 0; atChannel < channels.length; ++atChannel) {
+    var tmp = {};
+    tmp["channel"] = channels[atChannel];
+    tmp["data"] = data[atChannel];
+    data[atChannel] = tmp;
+  }
 
-  // const data = require("../data/res_south_07_05_2020.json");
-  return { place, date };
+  return data;
 }
 
 function getUrl(place, date) {
