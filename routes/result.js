@@ -15,8 +15,9 @@ router.get("/:place/:date", async (req, res) => {
     res.json(data);
   } catch(err) {
     console.error(err);
+    const data = require("../data/res_south_07_05_2020.json");
     res.status(500).json({
-      message: err
+      message: data
     });
   }
 });
