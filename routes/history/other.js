@@ -1,6 +1,6 @@
-import axios from "axios";
 
 export async function getResult(place, date) {
+  const axios = require("axios");
   const handleDate = require("../tools/handleDate.js");
   const channels = handleDate.getChannels(place, date);
 
