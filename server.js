@@ -1,9 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
-// const cors = require("cors");
-
-// app.use(cors());
 
 // Load env
 dotenv.config({ path: "./process.env" });
@@ -29,7 +26,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Choose port
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 7070;
 
 // Listen
 app.listen(port, () => {
