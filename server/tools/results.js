@@ -1,12 +1,11 @@
-const Lottery = require('../models/lottery');
 const South = require('../models/south');
+const Middle = require('../models/middle');
 const { isValidDate, isFuture, isToday } = require('../tools/date')
 
 
 async function getLottery(req, res, next) {
   let lottery = [];
   try {
-    // return res.json(req.params.date)
     if (!isValidRegion(req.params.region)) {
       return res.status(400).json({ message: 'Region is not valid' });
     }
@@ -19,6 +18,11 @@ async function getLottery(req, res, next) {
     switch (req.params.region) {
       case 'south':
         lottery = await South.find({
+          'date': req.params.date
+        });
+        break;
+      case 'middle':
+        lottery = await Middle.find({
           'date': req.params.date
         });
         break;
@@ -109,7 +113,18 @@ async function getResult(region, date) {
 
   let result = [];
   for (let atChannel = 0; atChannel < channels.length; ++atChannel) {
-    let tmp = new South();
+    let tmp;
+    switch (region) {
+      case 'south':
+        tmp = new South();
+        break;
+      case 'middle':
+        tmp = new Middle();
+        break;
+    
+      default:
+        break;
+    }
     tmp['date'] = date;
     tmp['channel'] = channels[atChannel]
     for (let atRes = 0; atRes < rewards.length; atRes++) {
@@ -119,6 +134,5 @@ async function getResult(region, date) {
   }
   return result;
 }
-
 
 module.exports = getLottery;

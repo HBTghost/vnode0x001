@@ -7,7 +7,8 @@
     "start": "node server",
     "server": "nodemon --exec babel-node server",
     "client": "cd client && yarn serve",
-    "dev": "concurrently \"yarn server\" \"yarn client\""
+    "dev": "concurrently \"yarn server\" \"yarn client\"",
+    "build": "cd client && yarn build && cd .."
   },
   "repository": "https://github.com/HBTghost/vnode0x001.git",
   "author": "Brian Drake (HBTghost)",

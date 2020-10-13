@@ -1,4 +1,7 @@
-GET http://localhost:6969/lotteries/south/20-09-2020 HTTP/1.1
-
+GET http://localhost:6969/api/lotteries/south/20-08-2020 HTTP/1.1
+###
+GET http://localhost:6969/api/lotteries/middle/20-08-2020 HTTP/1.1
 ###
 GET http://localhost:6969/api/result/south/21-09-2020 HTTP/1.1
+###
+GET http://localhost:6969/api/genDateStrings HTTP/1.1

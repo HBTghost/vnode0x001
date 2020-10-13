@@ -9,15 +9,15 @@ const southSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  G8: [Number],
-  G7: [Number],
-  G6: [Number],
-  G5: [Number],
-  G4: [Number],
-  G3: [Number],
-  G2: [Number],
-  G1: [Number],
-  GDB: [Number]
+  G8: [String],
+  G7: [String],
+  G6: [String],
+  G5: [String],
+  G4: [String],
+  G3: [String],
+  G2: [String],
+  G1: [String],
+  GDB: [String]
 });
 
 module.exports = mongoose.model('South', southSchema);
