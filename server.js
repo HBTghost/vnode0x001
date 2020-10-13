@@ -1,10 +1,22 @@
 const express = require("express");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
+const mongoose = require('mongoose');
 
 // Load env
 dotenv.config({ path: "./process.env" });
 
+// Connect to database
+mongoose.connect('mongodb://localhost/lottery', {
+  useCreateIndex: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+const db = mongoose.connection;
+db.on('error', (err) => console.error(err));
+db.once('open', () => console.log('Connected to Database'));
+
+// Create express app
 const app = express();
 
 // Dev logging
@@ -15,6 +27,7 @@ if (process.env.NODE_ENV === "dev") {
 // Lazy load routes
 app.use("/api/genDateStrings", require("./routes/genDateStrings.js"))
 app.use("/api/result", require("./routes/result.js"));
+app.use("/lotteries", require("./server/routes/lotteries.js"));
 
 // Handle production
 if (process.env.NODE_ENV === "production") {

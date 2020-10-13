@@ -1,0 +1,1 @@
+GET http://localhost:6969/lotteries/south/21-09-2020 HTTP/1.1
