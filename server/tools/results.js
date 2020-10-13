@@ -27,12 +27,9 @@ async function getLottery(req, res, next) {
         break;
     }
     if (lottery.length === 0) {
-      // for (let i = 20; i < 30; ++i) {
-        const date = "21-09-2020";
-        const data = await getResult(req.params.region, date);
-        data.forEach(async (val) => {await val.save()});
-        // }
-        return res.json(data);
+      const data = await getResult(req.params.region, req.params.date);
+      data.forEach(async (val) => {await val.save()});
+      return res.json(data);
       }
     return res.json(lottery)
   } catch(err) {

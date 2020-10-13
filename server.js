@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 dotenv.config({ path: "./process.env" });
 
 // Connect to database
-mongoose.connect('mongodb+srv://HBTghost:HBTghost_141269@cluster0.w40mn.mongodb.net/lottery?retryWrites=true&w=majority', {
+mongoose.connect(process.env.MONGODB_URI, {
   useCreateIndex: true,
   useNewUrlParser: true,
   useUnifiedTopology: true
