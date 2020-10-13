@@ -1,5 +1,5 @@
 
-export async function getResult(place, date) {
+async function getResult(place, date) {
   const axios = require("axios");
   const handleDate = require("../tools/handleDate.js");
   const channels = handleDate.getChannels(place, date);
@@ -54,3 +54,5 @@ function getUrl(place, date) {
   const baseUrl = process.env.HISTORY_RES_URL;
   return baseUrl.replace(/#place/g, placeCode).replace(/#date/g, date);
 }
+
+module.exports = getResult

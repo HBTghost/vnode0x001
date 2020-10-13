@@ -1,6 +1,6 @@
-import axios from "axios";
+const axios = require('axios');
 
-export async function getResult(place, date) {
+async function getResult(place, date) {
   const handleDate = require("../tools/handleDate.js");
   const channel = handleDate.getChannels(place, date);
   var data = [[], [], [], [], [], [], [], [], []];
@@ -39,3 +39,4 @@ function getUrl(place, date) {
   
   return baseUrl.replace(/#place/g, placeCode).replace(/#date/g, date);
 }
+module.exports = getResult;

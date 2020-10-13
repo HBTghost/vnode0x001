@@ -11,7 +11,7 @@ router.get("/:place/:date", async (req, res) => {
     } else {
       history = require("./history/other.js");
     }
-    const data = await history.getResult(place, date);
+    const data = await history(place, date);
     res.json(data);
   } catch(err) {
     console.error(err);

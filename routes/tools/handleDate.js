@@ -1,9 +1,9 @@
-export function getChannels(place, dateString) {
+function getChannels(place, dateString) {
   const date = getDateFromString(dateString);
   const regionChannels = require("../data/allChannels.json");
   return regionChannels[place][date.getDay()];
 }
-export function genDateStrings(place, dateString, day, amount) {
+function genDateStrings(place, dateString, day, amount) {
   var delta, base;
   if (dateString === "null") {
     delta = 0;
@@ -74,3 +74,5 @@ function isNotGotResult(place, date) {
     return false;
   }
 }
+
+module.exports = { getChannels, genDateStrings };
