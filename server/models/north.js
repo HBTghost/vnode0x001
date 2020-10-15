@@ -7,15 +7,15 @@ const northSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  G7: [String],
-  G6: [String],
-  G5: [String],
-  G4: [String],
-  G3: [String],
-  G2: [String],
-  G1: [String],
+  MaDB: [String],
   GDB: [String],
-  MaDB: [String]
+  G1: [String],
+  G2: [String],
+  G3: [String],
+  G4: [String],
+  G5: [String],
+  G6: [String],
+  G7: [String]
 });
 
 // Create model
