@@ -1,6 +1,6 @@
-GET http://localhost:6969/api/lotteries/south/20-08-2020 HTTP/1.1
+GET http://localhost:6969/api/lotteries/south/20-08-2018 HTTP/1.1
 ###
-GET http://localhost:6969/api/lotteries/middle/20-08-2020 HTTP/1.1
+GET http://localhost:6969/api/lotteries/middle/20-08-2018 HTTP/1.1
 ###
 GET http://localhost:6969/api/lotteries/north/20-08-2020 HTTP/1.1
 ###
