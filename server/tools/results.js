@@ -1,4 +1,5 @@
 const South = require('../models/south');
+const North = require('../models/north');
 const Middle = require('../models/middle');
 const { isValidDate, isFuture, isToday } = require('../tools/date')
 
@@ -31,10 +32,15 @@ async function getLottery(req, res, next) {
         break;
     }
     if (lottery.length === 0) {
-      const data = await getResult(req.params.region, req.params.date);
-      data.forEach(async (val) => {await val.save()});
-      return res.json(data);
+      let data;
+      if (req.params.region === 'north') {
+        data = await getResult2(req.params.region, req.params.date);
+      } else {
+        data = await getResult(req.params.region, req.params.date);
+        data.forEach(async (val) => { await val.save() });
       }
+      return res.json(data);
+    }
     return res.json(lottery)
   } catch(err) {
     return res.status(500).json({ message: err.message });
@@ -104,9 +110,9 @@ async function getResult(region, date) {
 
 
   const allRewards = {
-    "south": [ "G8", "G7", "G6", "G5", "G4", "G3", "G2", "G1", "GDB" ],
-    "middle": [ "G8", "G7", "G6", "G5", "G4", "G3", "G2", "G1", "GDB" ],
-    "north": [ "Mã ĐB", "GĐB", "G1", "G2", "G3", "G4", "G5", "G6", "G7" ]
+    "south": ["G8", "G7", "G6", "G5", "G4", "G3", "G2", "G1", "GDB"],
+    "middle": ["G8", "G7", "G6", "G5", "G4", "G3", "G2", "G1", "GDB"],
+    "north": ["MaDB", "GDB", "G1", "G2", "G3", "G4", "G5", "G6", "G7"]
   }
 
   const rewards = allRewards[region];
@@ -121,7 +127,7 @@ async function getResult(region, date) {
       case 'middle':
         tmp = new Middle();
         break;
-    
+
       default:
         break;
     }
@@ -129,6 +135,62 @@ async function getResult(region, date) {
     tmp['channel'] = channels[atChannel]
     for (let atRes = 0; atRes < rewards.length; atRes++) {
       tmp[rewards[atRes]] = data[atChannel][atRes];
+    }
+    result.push(tmp);
+  }
+  return result;
+}
+      
+async function getResult2(region, date) {
+  const axios = require("axios");
+  let MaDB = [];
+  const channels = ['mb'];
+  let data = [[], [], [], [], [], [], [], [], []];
+
+  const url = getUrl(region, date);
+  await axios(url)
+    .then(response => {
+      const cheerio = require("cheerio");
+      const $ = cheerio.load(response.data);
+      MaDB = $(".table-xsmb tbody tr > td > div > span").map((i, v) => $(v).text().trim()).get()
+      $(".table-xsmb tr").each((atRes, val) => {
+        const $1 = cheerio.load(val);
+        $1("td > span").each((pos1, res) => {
+          data[atRes].push($(res).text().trim());
+        });
+      });
+      data[0] = [...MaDB]
+    })
+    .catch(console.error);
+
+  const allRewards = {
+    "south": ["G8", "G7", "G6", "G5", "G4", "G3", "G2", "G1", "GDB"],
+    "middle": ["G8", "G7", "G6", "G5", "G4", "G3", "G2", "G1", "GDB"],
+    "north": ["MaDB", "GDB", "G1", "G2", "G3", "G4", "G5", "G6", "G7"]
+  }
+
+  const rewards = allRewards[region];
+
+  let result = [];
+  for (let atChannel = 0; atChannel < channels.length; ++atChannel) {
+    let tmp;
+    switch (region) {
+      case 'south':
+        tmp = new South();
+        break;
+      case 'middle':
+        tmp = new Middle();
+        break;
+      case 'north':
+        tmp = new North();
+        break;
+
+      default:
+        break;
+    }
+    tmp['date'] = date;
+    for (let atRes = 0; atRes < rewards.length; atRes++) {
+      tmp[rewards[atRes]] = data[atRes];
     }
     result.push(tmp);
   }
