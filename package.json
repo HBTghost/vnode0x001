@@ -1,6 +1,9 @@
 {
   "name": "vnode0x001",
   "version": "1.0.0",
+  "engines": {
+    "node": "14.x"
+  },
   "description": "Project 1 - full stack with Vue.js + Node.js",
   "main": "server.js",
   "scripts": {
