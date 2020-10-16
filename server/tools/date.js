@@ -10,7 +10,7 @@ function getDateFromString(dateString) {
 }
 
 function isFuture(dateString, timeRes) {
-  const nowString = new Date().toLocaleString('en-GB');
+  const nowString = new Date().toLocaleString('en-GB', { timeZone: 'Asia/Ho_Chi_Minh' });
   const userString = getDateFromString(dateString).toLocaleString('en-GB');
 
   const nowDate = nowString.slice(0, 10).split('/').reverse();
