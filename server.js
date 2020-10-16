@@ -1,7 +1,11 @@
-const express = require("express");
-const morgan = require("morgan");
-const dotenv = require("dotenv");
-const mongoose = require('mongoose');
+// const express = require("express");
+// const morgan = require("morgan");
+// const dotenv = require("dotenv");
+// const mongoose = require('mongoose');
+import express from 'express';
+import morgan from 'morgan';
+import dotenv from 'dotenv';
+import mongoose from 'mongoose';
 
 // Load env
 dotenv.config({ path: "./process.env" });
@@ -28,7 +32,7 @@ if (process.env.NODE_ENV === "dev") {
 app.use("/api/lotteries", require("./server/routes/lotteries.js"));
 
 // Handle production
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "proheoduction") {
   // Set static folder
   app.use(express.static(__dirname + "/public/"));
 

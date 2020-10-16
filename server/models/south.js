@@ -98,4 +98,5 @@ class South {
 }
 
 // Export North management
-module.exports = South;
+// module.exports = South;
+export { South };

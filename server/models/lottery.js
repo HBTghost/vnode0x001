@@ -1,4 +1,5 @@
-const South = require('./south');
+// const South = require('./south');
+import { South } from './south';
 const Middle = require('./middle');
 const North = require('./north');
 const { isValidDate, isFuture } = require('../tools/date');
