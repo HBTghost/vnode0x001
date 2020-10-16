@@ -1,8 +1,11 @@
 // const South = require('./south');
-import { South } from './south';
-const Middle = require('./middle');
-const North = require('./north');
-const { isValidDate, isFuture } = require('../tools/date');
+// const Middle = require('./middle');
+// const North = require('./north');
+import { South } from './south.js';
+import { Middle } from './middle.js';
+import { North } from './north.js';
+
+import { isValidDate, isFuture } from '../tools/date.js';
 
 class Lottery {
   constructor(region, date) {
@@ -28,4 +31,5 @@ class Lottery {
   }
 }
 
-module.exports = Lottery;
+// module.exports = Lottery;
+export { Lottery };

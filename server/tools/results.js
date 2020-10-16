@@ -1,4 +1,4 @@
-const Lottery = require('../models/lottery');
+import { Lottery } from '../models/lottery.js';
 
 async function getLottery(req, res, next) {
   try {
@@ -11,4 +11,5 @@ async function getLottery(req, res, next) {
   next();
 }
 
-module.exports = getLottery;
+// module.exports = getLottery;
+export { getLottery };

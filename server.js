@@ -6,6 +6,7 @@ import express from 'express';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import { router } from './server/routes/lotteries.js';
 
 // Load env
 dotenv.config({ path: "./process.env" });
@@ -29,10 +30,10 @@ if (process.env.NODE_ENV === "dev") {
 }
 
 // Lazy load routes
-app.use("/api/lotteries", require("./server/routes/lotteries.js"));
+app.use("/api/lotteries", router);
 
 // Handle production
-if (process.env.NODE_ENV === "proheoduction") {
+if (process.env.NODE_ENV === "production") {
   // Set static folder
   app.use(express.static(__dirname + "/public/"));
 

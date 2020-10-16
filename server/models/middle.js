@@ -1,5 +1,6 @@
 // Import mongoose
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 // Create schema
 const MiddleSchema = mongoose.Schema({
@@ -99,4 +100,5 @@ class Middle{
 }
 
 // Export Middle management
-module.exports = Middle;
+// module.exports = Middle;
+export { Middle };

@@ -31,7 +31,8 @@ function isFuture(dateString, timeRes) {
   return true;
 }
 
-module.exports = {
-  isValidDate,
-  isFuture
-}
+// module.exports = {
+//   isValidDate,
+//   isFuture
+// }
+export { isValidDate, isFuture };
