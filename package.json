@@ -1,6 +1,7 @@
 {
   "name": "vnode0x001",
   "version": "1.0.0",
+  "type": "module",
   "engines": {
     "node": "14.x"
   },
