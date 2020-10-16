@@ -4,11 +4,6 @@ function getDateFromString(dateString) {
   return new Date(iso);
 }
 
-function getStringFromDate(date) {
-  let arr = date.toISOString().slice(0, 10).split('-');
-  return arr.reverse().join('-');
-}
-
 function isFuture(dateString) {
   let date = getDateFromString(dateString);
   let today = new Date();

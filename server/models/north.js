@@ -28,11 +28,7 @@ function getUrl(date) {
 }
 
 // Get model from date
-async function getNorth(region, date) {
-  if (region !== 'north') {
-    return null;
-  }
-
+async function getNorth(date) {
   const axios = require("axios");
   const rewards = [ "MaDB", "GDB", "G1", "G2", "G3", "G4", "G5", "G6", "G7" ];
   let MaDB = [];
@@ -66,7 +62,24 @@ async function getNorth(region, date) {
   return result;
 }
 
+class NorthModel {
+  constructor(date) {
+    this.date = date;
+  }
+  async getOrUpdate() {
+    let norths = await North.find({
+      'date': this.date
+    });
+    if (norths.length === 0) {
+      norths = await getNorth(this.date);
+      norths.forEach(async north => await north.save());
+    }
+    return norths;
+  }
+}
+
 module.exports = {
   North,
-  getNorth
+  getNorth,
+  NorthModel
 }

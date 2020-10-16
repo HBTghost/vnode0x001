@@ -32,11 +32,7 @@ function getUrl(date) {
 }
 
 // Get model from date
-async function getMiddle(region, date) {
-  if (region !== 'middle') {
-    return null;
-  }
-  
+async function getMiddle(date) {
   const axios = require("axios");
   const url = getUrl(date);
   const rewards = [ "G8", "G7", "G6", "G5", "G4", "G3", "G2", "G1", "GDB" ];
@@ -83,7 +79,24 @@ async function getMiddle(region, date) {
   return result;
 }
 
+class MiddleModel {
+  constructor(date) {
+    this.date = date;
+  }
+  async getOrUpdate() {
+    let middles = await Middle.find({
+      'date': this.date
+    });
+    if (middles.length === 0) {
+      middles = await getMiddle(this.date);
+      middles.forEach(async middle => await middle.save());
+    }
+    return middles;
+  }
+}
+
 module.exports = {
   Middle,
-  getMiddle
+  getMiddle,
+  MiddleModel
 }
