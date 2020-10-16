@@ -1,29 +1,30 @@
-const { South, SouthModel } = require('./south');
-const { Middle, MiddleModel } = require('./middle');
-const { North, NorthModel } = require('./north');
-const { isValidDate } = require('../tools/date');
+const South = require('./south');
+const Middle = require('./middle');
+const North = require('./north');
+const { isValidDate, isFuture } = require('../tools/date');
 
 class Lottery {
   constructor(region, date) {
     if (!isValidDate(date)) {
-      throw { message: 'Date is not valid' };
-    } else {
-      this.date = date;
+      throw { status: 400, message: 'Date is not valid' };
     }
 
     if (region === 'south') {
-      this.model = new SouthModel(date);
+      this.model = new South(date);
     } else if (region === 'middle') {
-      this.model = new MiddleModel(date);
+      this.model = new Middle(date);
     } else if (region === 'north') {
-      this.model = new NorthModel(date);
+      this.model = new North(date);
     } else {
-      throw { message: 'Region is not valid' };
+      throw { status: 400, message: 'Region is not valid' };
     }
   }
   async getOrUpdate() {
+    if (isFuture(this.model.date, this.model.timeRes)) {
+      throw { status: 404, message: 'Does not have result yet' };
+    }
     return await this.model.getOrUpdate();
   }
 }
 
-module.exports = Lottery
+module.exports = Lottery;

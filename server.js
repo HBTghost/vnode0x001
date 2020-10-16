@@ -25,7 +25,6 @@ if (process.env.NODE_ENV === "dev") {
 }
 
 // Lazy load routes
-app.use("/api/result", require("./routes/result.js"));
 app.use("/api/lotteries", require("./server/routes/lotteries.js"));
 
 // Handle production
