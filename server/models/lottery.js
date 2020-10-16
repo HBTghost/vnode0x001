@@ -21,7 +21,7 @@ class Lottery {
   }
   async getOrUpdate() {
     if (isFuture(this.model.date, this.model.timeRes)) {
-      throw { status: 404, message: 'Does not have result yet' };
+      throw { status: 404, message: 'Does not have result yet' + (new Date()).toLocaleString() };
     }
     return await this.model.getOrUpdate();
   }
