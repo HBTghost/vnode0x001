@@ -26,7 +26,7 @@ const MiddleSchema = mongoose.Schema({
 const MiddleModel = mongoose.model('Middle', MiddleSchema);
 
 // Create Middle management
-class Middle{
+class Middle {
   constructor(date) {
     this.date = date;
     this.timeRes = '17:35:00';
@@ -52,7 +52,7 @@ class Middle{
         const cheerio = require("cheerio");
         const $ = cheerio.load(response.data);
 
-        channels = $(".table-striped thead > tr > th > a").map((i, v) => $(v).text()).get()
+        channels = $(".table-striped thead > tr > th > a").map((i, v) => $(v).text()).get();
 
         for (let i = 0; i < channels.length; ++i) {
           let tmp = [[], [], [], [], [], [], [], [], []];
@@ -86,6 +86,7 @@ class Middle{
     return result;
   }
 
+  // Get result from DB or scape result and post result to DB then return result
   async getOrUpdate() {
     let middles = await MiddleModel.find({
       'date': this.date

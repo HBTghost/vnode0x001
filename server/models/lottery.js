@@ -3,6 +3,7 @@ import { Middle } from './middle.js';
 import { North } from './north.js';
 import { isValidDate, isFuture } from '../tools/date.js';
 
+// Create Lottery model which can represent South, Middle or North
 class Lottery {
   constructor(region, date) {
     if (!isValidDate(date)) {
@@ -21,7 +22,7 @@ class Lottery {
   }
   async getOrUpdate() {
     if (isFuture(this.model.date, this.model.timeRes)) {
-      throw { status: 404, message: 'Does not have result yet' + (new Date()).toLocaleString('en-GB', { timeZone: 'Asia/Ho_Chi_Minh' }) };
+      throw { status: 404, message: 'Does not have result yet' };
     }
     return await this.model.getOrUpdate();
   }

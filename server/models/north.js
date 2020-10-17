@@ -69,7 +69,8 @@ class North {
     
     return result;
   }
-
+  
+  // Get result from DB or scape result and post result to DB then return result
   async getOrUpdate() {
     let norths = await NorthModel.find({
       'date': this.date

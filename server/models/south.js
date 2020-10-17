@@ -85,6 +85,7 @@ class South {
     return result;
   }
 
+  // Get result from DB or scape result and post result to DB then return result
   async getOrUpdate() {
     let souths = await SouthModel.find({
       'date': this.date
