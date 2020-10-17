@@ -1,12 +1,13 @@
-// const express = require("express");
-// const morgan = require("morgan");
-// const dotenv = require("dotenv");
-// const mongoose = require('mongoose');
 import express from 'express';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import { router } from './server/routes/lotteries.js';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // Load env
 dotenv.config({ path: "./process.env" });
