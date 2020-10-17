@@ -1,5 +1,6 @@
-// Import mongoose
 import mongoose from 'mongoose';
+import axios from "axios";
+import cheerio from "cheerio";
 
 // Create schema
 const SouthSchema = mongoose.Schema({
@@ -39,7 +40,6 @@ class South {
 
   // Get model
   async get() {
-    const axios = require("axios");
     const url = this.getUrl();
     const rewards = [ "G8", "G7", "G6", "G5", "G4", "G3", "G2", "G1", "GDB" ];
     let channels = [];
@@ -48,7 +48,6 @@ class South {
 
     await axios(url)
       .then(response => {
-        const cheerio = require("cheerio");
         const $ = cheerio.load(response.data);
 
         channels = $(".table-striped thead > tr > th > a").map((i, v) => $(v).text()).get()
