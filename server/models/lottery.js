@@ -1,10 +1,6 @@
-// const South = require('./south');
-// const Middle = require('./middle');
-// const North = require('./north');
 import { South } from './south.js';
 import { Middle } from './middle.js';
 import { North } from './north.js';
-
 import { isValidDate, isFuture } from '../tools/date.js';
 
 class Lottery {
@@ -31,5 +27,4 @@ class Lottery {
   }
 }
 
-// module.exports = Lottery;
 export { Lottery };

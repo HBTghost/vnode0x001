@@ -2,7 +2,7 @@ import express from 'express';
 import morgan from 'morgan';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import { router } from './server/routes/lotteries.js';
+import { router } from './routes/lotteries.js';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
@@ -36,7 +36,7 @@ app.use("/api/lotteries", router);
 // Handle production
 if (process.env.NODE_ENV === "production") {
   // Set static folder
-  app.use(express.static(__dirname + "/public/"));
+  app.use(express.static(__dirname + "../public/"));
 
   // Handle SPA
   app.get(/.*/, (req, res) => res.sendFile(__dirname + "/public/index.html"));

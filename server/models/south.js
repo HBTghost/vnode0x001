@@ -1,5 +1,4 @@
 // Import mongoose
-// const mongoose = require('mongoose');
 import mongoose from 'mongoose';
 
 // Create schema
@@ -99,5 +98,4 @@ class South {
 }
 
 // Export North management
-// module.exports = South;
 export { South };

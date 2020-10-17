@@ -9,7 +9,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server",
-    "server": "nodemon --exec babel-node server",
+    "server": "cd server && nodemon --exec babel-node server",
     "client": "cd client && yarn serve",
     "dev": "concurrently \"yarn server\" \"yarn client\"",
     "prod": "cd client && yarn build && cd .."

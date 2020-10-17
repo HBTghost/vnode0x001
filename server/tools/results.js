@@ -11,5 +11,4 @@ async function getLottery(req, res, next) {
   next();
 }
 
-// module.exports = getLottery;
 export { getLottery };
