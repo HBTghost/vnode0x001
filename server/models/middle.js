@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
-import axios from "axios";
-import cheerio from "cheerio";
+import axios from 'axios';
+import cheerio from 'cheerio';
 
 // Create schema
 const MiddleSchema = mongoose.Schema({
@@ -42,7 +42,7 @@ class Middle {
   // Get model
   async get() {
     const url = this.getUrl();
-    const rewards = [ "G8", "G7", "G6", "G5", "G4", "G3", "G2", "G1", "GDB" ];
+    const rewards = [ 'G8', 'G7', 'G6', 'G5', 'G4', 'G3', 'G2', 'G1', 'GDB' ];
     let channels = [];
     let result = [];
     let data = [];
@@ -51,20 +51,20 @@ class Middle {
       .then(response => {
         const $ = cheerio.load(response.data);
 
-        channels = $(".table-striped thead > tr > th > a").map((i, v) => $(v).text()).get();
+        channels = $('.table-striped thead > tr > th > a').map((i, v) => $(v).text()).get();
 
         for (let i = 0; i < channels.length; ++i) {
           let tmp = [[], [], [], [], [], [], [], [], []];
           data.push([...tmp]);
         }
 
-        $(".table-striped tbody > tr").each((atRes, val) => {
+        $('.table-striped tbody > tr').each((atRes, val) => {
           const $1 = cheerio.load(val);
 
-          $1("td").next((atChannel, val1) => {
+          $1('td').next((atChannel, val1) => {
             const $2 = cheerio.load(val1);
 
-            $2("span").each((pos, res) => {
+            $2('span').each((pos, res) => {
               data[atChannel][atRes].push($(res).text().trim());
             });
           });

@@ -9,9 +9,9 @@ function getDateFromString(dateString) {
   return new Date(arr.reverse().join('-'));
 }
 
-function isFuture(dateString, timeRes) {
+function isFuture(date, timeRes) {
   const nowString = new Date().toLocaleString('en-GB', { timeZone: 'Asia/Ho_Chi_Minh' });
-  const userString = getDateFromString(dateString).toLocaleString('en-GB');
+  const userString = date ? getDateFromString(date).toLocaleString('en-GB') : nowString;
 
   const nowDate = nowString.slice(0, 10).split('/').reverse();
   const nowTime = nowString.slice(12).split(':');
@@ -31,4 +31,32 @@ function isFuture(dateString, timeRes) {
   return true;
 }
 
-export { isValidDate, isFuture };
+function genResultedDates(region, quantity = 1) {
+  let resultedTime;
+  if (region === 'south') {
+    resultedTime = '16:35:00';
+  } else if (region === 'middle') {
+    resultedTime = '17:35:00';
+  } else {
+    resultedTime = '18:25:00';
+  }
+
+  function getStringFromDate(date) {
+    let localeString =  date.toLocaleString('en-GB', { timeZone: 'Asia/Ho_Chi_Minh' });
+    return localeString.slice(0, 10).split('/').join('-');
+  }
+
+  let today = new Date();
+  const aWeek = 7 * 24 * 60 * 60 * 1000;
+  let result = []
+  if (isFuture(null, resultedTime)) {
+    today = new Date(today.getTime() - aWeek);
+  }
+  for (let i = 0; i < quantity; ++i) {
+    result.push(getStringFromDate(today));
+    today = new Date(today.getTime() - aWeek);
+  }
+  return result;
+}
+
+export { isValidDate, isFuture, genResultedDates };

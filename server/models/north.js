@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
-import axios from "axios";
-import cheerio from "cheerio";
+import axios from 'axios';
+import cheerio from 'cheerio';
 
 // Create schema
 const NorthSchema = mongoose.Schema({
@@ -36,7 +36,7 @@ class North {
 
   // Get model from date
   async get() {
-    const rewards = [ "MaDB", "GDB", "G1", "G2", "G3", "G4", "G5", "G6", "G7" ];
+    const rewards = [ 'MaDB', 'GDB', 'G1', 'G2', 'G3', 'G4', 'G5', 'G6', 'G7' ];
     let MaDB = [];
     let data = [[], [], [], [], [], [], [], [], []];
     let result = [];
@@ -45,12 +45,12 @@ class North {
     await axios(url)
       .then(response => {
         const $ = cheerio.load(response.data);
-        MaDB = $(".table-xsmb tbody tr > td > div > span").map((i, v) => $(v).text().trim()).get()
+        MaDB = $('.table-xsmb tbody tr > td > div > span').map((i, v) => $(v).text().trim()).get()
 
-        $(".table-xsmb tr").each((atRes, val) => {
+        $('.table-xsmb tr').each((atRes, val) => {
           const $1 = cheerio.load(val);
 
-          $1("td > span").each((pos1, res) => {
+          $1('td > span').each((pos1, res) => {
             data[atRes].push($(res).text().trim());
           });
         });

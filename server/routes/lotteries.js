@@ -1,11 +1,11 @@
 import express from 'express';
 import { getLottery } from '../tools/results.js';
 
-const router = express.Router();
+const lotteryRouter = express.Router();
 
 // Get a lottery result
-router.get('/:region/:date', getLottery, (req, res) => {
+lotteryRouter.get('/:region/:date', getLottery, (req, res) => {
   res.json(res.lottery);
 })
 
-export { router };
+export { lotteryRouter };
